@@ -1,12 +1,17 @@
-import React, { useState, ChangeEvent } from 'react';
-import { useAppDispatch, useAppSelector } from '../lib/hooks';
-import { incremented, amountAdded } from '../components/counter/counter-slice';
+import React, { useState, ChangeEvent } from "react";
+import { useAppDispatch, useAppSelector } from "../lib/hooks";
+import {
+  incremented,
+  decremented,
+  amountAdded,
+  resetNumber,
+} from "../components/counter/counter-slice";
 
-type AppProps = {}
+type AppProps = {};
 
 type AppState = {
   amount: number;
-}
+};
 
 function Home(props: AppProps) {
   // Use the useAppSelector hook to get the current count from the Redux store
@@ -16,8 +21,16 @@ function Home(props: AppProps) {
   const dispatch = useAppDispatch();
 
   // Handle click event for incrementing the count
-  function handleClick() {
+  function incrementClick() {
     dispatch(incremented());
+  }
+
+  function decrementClick() {
+    dispatch(decremented());
+  }
+
+  function resetClick() {
+    dispatch(resetNumber());
   }
 
   // State for managing the amount value in the input field
@@ -29,7 +42,7 @@ function Home(props: AppProps) {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     // Parse the input value as a number
     const newAmount = parseInt(e.target.value, 10);
-    
+
     // Check if the parsed value is a valid number
     if (!isNaN(newAmount)) {
       setByAmount({ ...byAmount, amount: newAmount });
@@ -44,33 +57,46 @@ function Home(props: AppProps) {
   // Render the component
   return (
     <>
-         <div className="flex items-center justify-center h-screen">
-      <div className="w-400 h-400 border border-black p-8 text-center">
-        <h2 className="text-xl font-bold">The Count Is...</h2>
-        <h1 className="text-4xl font-bold">{count}</h1>
-        <button
-          className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={handleClick}
-        >
-          Increment
-        </button>
-        <button onClick={handleAmountClick}>
-          <input
-            type="number"
-            onChange={handleChange}
-            value={byAmount.amount}
-          />
-        </button>
-      </div>
+      <div className="flex items-center justify-center h-screen">
+        <div className="w-400 h-400 border border-black p-8 text-center ">
+          <h2 className="text-xl font-bold">The Count Is...</h2>
+          <h1 className="text-4xl font-bold">{count}</h1>
+          <button
+            className="mt-4 mx-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={incrementClick}
+          >
+            Increment
+          </button>
+          <button
+            className="mt-4 mx-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={decrementClick}
+          >
+            Decrement
+          </button>
+          <button
+            className="mt-4 mx-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={resetClick}
+          >
+            Reset
+          </button>
+          <div className="mt-4">
+            <input
+              type="number"
+              value={byAmount.amount}
+              onChange={handleChange}
+              className="text-center py-2 px-4 rounded border-2 border-gray-300 mr-2"
+            />
+            <button
+              onClick={handleAmountClick}
+              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Add Amount
+            </button>
+          </div>
+        </div>
       </div>
     </>
   );
 }
 
 export default Home;
-
-
-
-
-
-
