@@ -21,13 +21,19 @@ const counterSlice = createSlice({
             // Redux Toolkit allows direct mutation of the state
             state.value++;
         },
+        decremented(state) {
+            state.value--
+        },
         amountAdded(state, action: PayloadAction<number>) {
             // Update the state based on the payload value
             state.value += action.payload;
+        },
+        resetNumber(state) {
+            state.value = initialState.value
         }
     }
 });
 
 // Export actions and reducer from the created slice
-export const { incremented, amountAdded } = counterSlice.actions;
+export const { incremented, decremented, amountAdded, resetNumber } = counterSlice.actions;
 export default counterSlice.reducer;
