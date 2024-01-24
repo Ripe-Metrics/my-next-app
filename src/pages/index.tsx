@@ -6,6 +6,7 @@ import {
   amountAdded,
   resetNumber,
 } from "../components/counter/counter-slice";
+import { useTheme } from "next-themes";
 
 type AppProps = {};
 
@@ -25,10 +26,12 @@ function Home(props: AppProps) {
     dispatch(incremented());
   }
 
+  // Handle click event for decrementing the count
   function decrementClick() {
     dispatch(decremented());
   }
 
+  // Handle click event for reseting the count
   function resetClick() {
     dispatch(resetNumber());
   }
@@ -54,11 +57,23 @@ function Home(props: AppProps) {
     dispatch(amountAdded(byAmount.amount));
   }
 
+  // toggle light and dark mode
+  const [toggleButton, setToggleButton] = useState("🌝");
+  const { theme, setTheme } = useTheme();
+  const handleToggleButton = () => {
+    if (theme === "dark") {
+      setToggleButton("🌚");
+      setTheme("light");
+    } else {
+      setTheme("dark");
+      setToggleButton("🌝");
+    }
+  };
   // Render the component
   return (
     <>
       <div className="flex items-center justify-center h-screen">
-        <div className="w-400 h-400 border border-black p-8 text-center ">
+        <div className="w-400 h-400 border border-black [box-shadow:0px_0px_10px_10px] p-8 text-center ">
           <h2 className="text-xl font-bold">The Count Is...</h2>
           <h1 className="text-4xl font-bold">{count}</h1>
           <button
@@ -93,6 +108,12 @@ function Home(props: AppProps) {
               Add Amount
             </button>
           </div>
+          <button
+            onClick={handleToggleButton}
+            className="m-0 top-4/4 left-2/4 -translate-x-1/2 -translate-y-2/2 bg-gray-800 dark:hover:bg-white  transition-all duration-100 text-white dark:text-gray-800 px-8 py-2 text-2xl md:text-4xl rounded-lg absolute bottom-32"
+          >
+            {toggleButton}
+          </button>
         </div>
       </div>
     </>
