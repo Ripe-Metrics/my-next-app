@@ -5,6 +5,7 @@ import {
   decremented,
   amountAdded,
   resetNumber,
+  incrementAsync,
 } from "../components/counter/counter-slice";
 import { useTheme } from "next-themes";
 
@@ -34,6 +35,10 @@ function Home(props: AppProps) {
   // Handle click event for reseting the count
   function resetClick() {
     dispatch(resetNumber());
+  }
+
+  function asyncClick() {
+    dispatch(incrementAsync())
   }
 
   // State for managing the amount value in the input field
@@ -97,6 +102,12 @@ function Home(props: AppProps) {
             onClick={decrementClick}
           >
             Decrement
+          </button>
+          <button
+            className="mt-4 mx-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={asyncClick}
+          >
+            Asynch
           </button>
           <div className="mt-4">
             <button
