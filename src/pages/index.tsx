@@ -41,16 +41,20 @@ function Home(props: AppProps) {
     amount: 1,
   });
 
-  // Handle change event for the input field to update the amount in the state
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // Parse the input value as a number
-    const newAmount = parseInt(e.target.value, 10);
+// Handle change event for the input field to update the amount in the state
+const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  // Parse the input value as a number
+  const newAmount = parseInt(e.target.value, 10);
+  const inputValue = e.target.value;
 
-    // Check if the parsed value is a valid number
-    if (!isNaN(newAmount)) {
-      setByAmount({ ...byAmount, amount: newAmount });
-    }
-  };
+  // Check if the input is empty
+  if (inputValue === '') {
+    // If empty, set the value to 0
+    setByAmount({ ...byAmount, amount: 0 });
+  } else if (!isNaN(newAmount)) {
+    setByAmount({ ...byAmount, amount: newAmount });
+  }
+};
 
   // Handle click event for adding the specified amount to the count
   function handleAmountClick() {
@@ -88,24 +92,26 @@ function Home(props: AppProps) {
           >
             Decrement
           </button>
-          <button
-            className="mt-4 mx-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            onClick={resetClick}
-          >
-            Reset
-          </button>
           <div className="mt-4">
-            <input
-              type="number"
-              value={byAmount.amount}
-              onChange={handleChange}
-              className="text-center py-2 px-4 rounded border-2 border-gray-300 mr-2"
-            />
             <button
               onClick={handleAmountClick}
-              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+              className="mx-1 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
             >
+              <input
+                type="text"
+                value={byAmount.amount}
+                onChange={handleChange}
+                onClick={(e) => e.stopPropagation()}
+                maxLength={3}
+                className="w-[5ch] text-center  text-black rounded border-2 border-gray-300 mr-3"
+              />
               Add Amount
+            </button>
+            <button
+              className="mx-1 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+              onClick={resetClick}
+            >
+              Reset
             </button>
           </div>
           <button
