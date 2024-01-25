@@ -1,12 +1,19 @@
 import React, { useState, ChangeEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../lib/hooks";
 import {
-  incremented,
-  decremented,
-  amountAdded,
-  resetNumber,
-  incrementAsync,
-} from "../components/counter/counter-slice";
+  incrementCounter1,
+  decrementCounter1,
+  addAmountToCounter1,
+  resetCounter1,
+  incrementAsyncOne,
+} from "../components/counter/counter-slice-one";
+import {
+  incrementcounter2,
+  decrementcounter2,
+  addAmountTocounter2,
+  resetcounter2,
+  incrementAsyncTwo,
+} from "@/components/counter/counter-slice-two";
 import { useTheme } from "next-themes";
 
 type AppProps = {};
@@ -17,28 +24,28 @@ type AppState = {
 
 function Home(props: AppProps) {
   // Use the useAppSelector hook to get the current count from the Redux store
-  const count = useAppSelector((state) => state.counter.value);
+  const count = useAppSelector((state) => state.counter1.counter1);
 
   // Use the useAppDispatch hook to get the dispatch function from the Redux store
   const dispatch = useAppDispatch();
 
   // Handle click event for incrementing the count
   function incrementClick() {
-    dispatch(incremented());
+    dispatch(incrementcounter2());
   }
 
   // Handle click event for decrementing the count
   function decrementClick() {
-    dispatch(decremented());
+    dispatch(decrementcounter2());
   }
 
   // Handle click event for reseting the count
   function resetClick() {
-    dispatch(resetNumber());
+    dispatch(resetcounter2());
   }
 
   function asyncClick() {
-    dispatch(incrementAsync())
+    dispatch(incrementAsyncTwo());
   }
 
   // State for managing the amount value in the input field
@@ -63,7 +70,7 @@ function Home(props: AppProps) {
 
   // Handle click event for adding the specified amount to the count
   function handleAmountClick() {
-    dispatch(amountAdded(byAmount.amount));
+    dispatch(addAmountTocounter2(byAmount.amount));
   }
 
   // toggle light and dark mode
@@ -78,7 +85,6 @@ function Home(props: AppProps) {
       setToggleButton("🌝");
     }
   };
-
 
   // Render the component
   return (

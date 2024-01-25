@@ -1,11 +1,13 @@
 // Import necessary functions and modules
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "../components/counter/counter-slice"
+import counter1Reducer from "../components/counter/counter-slice-one"
+import counter2Reducer from "@/components/counter/counter-slice-two"
 
 // Configure the Redux store with the counterReducer
 export const store = configureStore({
     reducer: {
-        counter: counterReducer,
+        counter1: counter1Reducer,
+        counter2: counter2Reducer
     },
 });
 
