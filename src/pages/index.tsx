@@ -76,8 +76,8 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
   // Render the component
   return (
     <>
-      <div className="flex items-center justify-center h-screen">
-        <div className="w-400 h-400 border border-black [box-shadow:0px_0px_10px_10px] p-8 text-center ">
+      <div className="flex items-center justify-center">
+        <div className="w-10 border border-black [box-shadow:0px_0px_10px_10px] p-8 text-center ">
           <h2 className="text-xl font-bold">The Count Is...</h2>
           <h1 className="text-4xl font-bold">{count}</h1>
           <button
