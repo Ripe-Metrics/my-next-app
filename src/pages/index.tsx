@@ -41,20 +41,20 @@ function Home(props: AppProps) {
     amount: 1,
   });
 
-// Handle change event for the input field to update the amount in the state
-const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-  // Parse the input value as a number
-  const newAmount = parseInt(e.target.value, 10);
-  const inputValue = e.target.value;
+  // Handle change event for the input field to update the amount in the state
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    // Parse the input value as a number
+    const newAmount = parseInt(e.target.value, 10);
+    const inputValue = e.target.value;
 
-  // Check if the input is empty
-  if (inputValue === '') {
-    // If empty, set the value to 0
-    setByAmount({ ...byAmount, amount: 0 });
-  } else if (!isNaN(newAmount)) {
-    setByAmount({ ...byAmount, amount: newAmount });
-  }
-};
+    // Check if the input is empty
+    if (inputValue === "") {
+      // If empty, set the value to 0
+      setByAmount({ ...byAmount, amount: 0 });
+    } else if (!isNaN(newAmount)) {
+      setByAmount({ ...byAmount, amount: newAmount });
+    }
+  };
 
   // Handle click event for adding the specified amount to the count
   function handleAmountClick() {
@@ -73,11 +73,17 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       setToggleButton("🌝");
     }
   };
+
+
   // Render the component
   return (
     <>
-      <div className="flex items-center justify-center h-screen">
-        <div className="w-400 h-400 border border-black [box-shadow:0px_0px_10px_10px] p-8 text-center ">
+      <div
+        className={`flex items-center justify-center h-screen ${
+          theme === "light" ? "bg-primary-light" : "bg-primary-dark"
+        }`}
+      >
+        <div className="w-1/2 h-400 border border-black [box-shadow:0px_0px_10px_10px] p-8 text-center ">
           <h2 className="text-xl font-bold">The Count Is...</h2>
           <h1 className="text-4xl font-bold">{count}</h1>
           <button
