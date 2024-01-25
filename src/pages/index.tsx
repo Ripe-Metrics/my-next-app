@@ -83,7 +83,7 @@ function Home(props: AppProps) {
           theme === "light" ? "bg-primary-light" : "bg-primary-dark"
         }`}
       >
-        <div className="w-400 h-400 border border-black [box-shadow:0px_0px_10px_10px] p-8 text-center ">
+        <div className="w-1/2 h-400 border border-black [box-shadow:0px_0px_10px_10px] p-8 text-center ">
           <h2 className="text-xl font-bold">The Count Is...</h2>
           <h1 className="text-4xl font-bold">{count}</h1>
           <button
