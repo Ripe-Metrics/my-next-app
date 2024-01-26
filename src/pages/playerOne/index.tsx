@@ -15,9 +15,10 @@ type AppState = {
   amount: number;
 };
 
-function Home(props: AppProps) {
+function playerOne(props: AppProps) {
   // Use the useAppSelector hook to get the current count from the Redux store
   const count = useAppSelector((state) => state.counter1.counter1);
+  const count2 = useAppSelector((state) => state.counter2.counter2);
 
   // Use the useAppDispatch hook to get the dispatch function from the Redux store
   const dispatch = useAppDispatch();
@@ -90,6 +91,7 @@ function Home(props: AppProps) {
         <div className="sm:w-5/6 w-96 h-auto border rounded border-black [box-shadow:0px_0px_10px_4px] p-8 text-center ">
           <h2 className="text-xl font-bold">The Count Is...</h2>
           <h1 className="text-4xl font-bold">{count}</h1>
+          <h1 className="text-4xl font-bold">{count2}</h1>
           <button
             className="mt-4 mx-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             onClick={incrementClick}
@@ -142,4 +144,4 @@ function Home(props: AppProps) {
   );
 }
 
-export default Home;
+export default playerOne;
