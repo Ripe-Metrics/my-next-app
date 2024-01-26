@@ -2,18 +2,18 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 
 // Define the shape of the state inside the Redux slice
-interface CounterState {
-  counter2: number;
+interface CounterStateTwo {
+  counterTwo: number;
 }
 
 // Define the initial value of the state
-const initialState: CounterState = {
-  counter2: 0,
+const initialState: CounterStateTwo = {
+  counterTwo: 0,
 };
 
 // Define an async thunk for incrementing
 export const incrementAsyncTwo = createAsyncThunk(
-  "counter2/incrementAsyncTwo",
+  "counterTwo/incrementAsyncTwo",
   async () => {
     // Simulate an asynchronous operation, e.g., fetching data
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -23,36 +23,36 @@ export const incrementAsyncTwo = createAsyncThunk(
 );
 
 // Create a Redux slice using createSlice
-const counterSlice = createSlice({
-  name: "counter2", // Name of the slice
+const counterSliceTwo = createSlice({
+  name: "counterTwo", // Name of the slice
   initialState, // Initial state
   reducers: {
     // Define reducer functions for handling state updates
-    incrementcounter2(state) {
-      state.counter2++;
+    incrementcounterTwo(state) {
+      state.counterTwo++;
     },
-    decrementcounter2(state) {
-      state.counter2--;
+    decrementcounterTwo(state) {
+      state.counterTwo--;
     },
-    addAmountTocounter2(state, action: PayloadAction<number>) {
-      state.counter2 += action.payload;
+    addAmountTocounterTwo(state, action: PayloadAction<number>) {
+      state.counterTwo += action.payload;
     },
-    resetcounter2(state) {
-      state.counter2 = initialState.counter2;
+    resetcounterTwo(state) {
+      state.counterTwo = initialState.counterTwo;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(incrementAsyncTwo.fulfilled, (state) => {
       // You can choose which counter to increment in response to the async action
-      state.counter2++;
+      state.counterTwo++;
     });
   },
 });
 // Export actions and reducer from the created slice
 export const {
-  incrementcounter2,
-  decrementcounter2,
-  addAmountTocounter2,
-  resetcounter2,
-} = counterSlice.actions;
-export default counterSlice.reducer;
+  incrementcounterTwo,
+  decrementcounterTwo,
+  addAmountTocounterTwo,
+  resetcounterTwo,
+} = counterSliceTwo.actions;
+export default counterSliceTwo.reducer;

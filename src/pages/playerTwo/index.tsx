@@ -1,10 +1,10 @@
 import React, { useState, ChangeEvent } from "react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import {
-  incrementCounter1,
-  decrementCounter1,
-  addAmountToCounter1,
-  resetCounter1,
+  incrementCounterOne,
+  decrementCounterOne,
+  addAmountToCounterOne,
+  resetCounterOne,
   incrementAsyncOne,
 } from "@/components/counter/counter-slice-one";
 import { useTheme } from "next-themes";
@@ -17,25 +17,25 @@ type AppState = {
 
 function playerTwo(props: AppProps) {
   // Use the useAppSelector hook to get the current count from the Redux store
-  const count = useAppSelector((state) => state.counter2.counter2);
-  const count1 = useAppSelector((state) => state.counter1.counter1);
+  const countTwo = useAppSelector((state) => state.counterTwo.counterTwo);
+  const countOne = useAppSelector((state) => state.counterOne.counterOne);
 
   // Use the useAppDispatch hook to get the dispatch function from the Redux store
   const dispatch = useAppDispatch();
 
   // Handle click event for incrementing the count
   function incrementClick() {
-    dispatch(incrementCounter1());
+    dispatch(incrementCounterOne());
   }
 
   // Handle click event for decrementing the count
   function decrementClick() {
-    dispatch(decrementCounter1());
+    dispatch(decrementCounterOne());
   }
 
   // Handle click event for reseting the count
   function resetClick() {
-    dispatch(resetCounter1());
+    dispatch(resetCounterOne());
   }
 
   function asyncClick() {
@@ -64,7 +64,7 @@ function playerTwo(props: AppProps) {
 
   // Handle click event for adding the specified amount to the count
   function handleAmountClick() {
-    dispatch(addAmountToCounter1(byAmount.amount));
+    dispatch(addAmountToCounterOne(byAmount.amount));
   }
 
   // toggle light and dark mode
@@ -90,8 +90,8 @@ function playerTwo(props: AppProps) {
       >
         <div className="sm:w-5/6 w-96 h-auto border rounded border-black [box-shadow:0px_0px_10px_4px] p-8 text-center ">
           <h2 className="text-xl font-bold">The Count Is...</h2>
-          <h1 className="text-4xl font-bold">{count}</h1>
-          <h1 className="text-4xl font-bold">{count1}</h1>
+          <h1 className="text-4xl font-bold">{countTwo}</h1>
+          <h1 className="text-4xl font-bold">{countOne}</h1>
           <button
             className="mt-4 mx-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             onClick={incrementClick}
